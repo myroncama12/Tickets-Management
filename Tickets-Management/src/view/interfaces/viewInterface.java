@@ -10,5 +10,6 @@ package view.interfaces;
  * @author Valakuth
  */
 public interface viewInterface {
+
     public void setVisibleMainView(boolean pVisibility);
 }

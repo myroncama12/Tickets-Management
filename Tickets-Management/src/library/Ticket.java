@@ -13,7 +13,7 @@ import java.util.Objects;
  * @author myron
  */
 public class Ticket {
-    
+
     private LocalDate fecha_Hora;
     private String cliente;
     private Estado estado;
@@ -106,6 +106,5 @@ public class Ticket {
         }
         return true;
     }
-    
-    
+
 }

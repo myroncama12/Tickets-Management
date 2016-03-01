@@ -5,7 +5,6 @@
  */
 package tickets.management;
 
-
 import library.Categoria;
 
 /**
@@ -20,13 +19,10 @@ public class TicketsManagement {
     public static void main(String[] args) {
         // TODO code application logic here
         Categoria C;
-      for(Categoria d: Categoria.values()){
-          System.out.println(d);}
-      
-        
+        for (Categoria d : Categoria.values()) {
+            System.out.println(d);
+        }
+
     }
-    
-   
-    
- 
+
 }

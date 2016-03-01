@@ -15,7 +15,7 @@ import java.util.Objects;
 public abstract class GestorGeneral {
 
     protected ArrayList<Object> lista;
-    
+
     public ArrayList<Object> getLista() {
         return lista;
     }
@@ -23,11 +23,9 @@ public abstract class GestorGeneral {
     public void setLista(ArrayList<Object> lista) {
         this.lista = lista;
     }
-    
-   
-    
+
     public abstract boolean agregar(Object o);
+
     public abstract boolean modificar(Object o);
-   
-    
+
 }

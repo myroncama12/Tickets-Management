@@ -5,14 +5,14 @@
  */
 package library;
 
-
 import java.util.Objects;
+
 /**
  *
  * @author myron
  */
 public class Empleado {
-    
+
     private String nombre;
     private String codigo;
     private Categoria categoria;
@@ -83,10 +83,7 @@ public class Empleado {
         return true;
     }
 
-   
-    
-    
     public Empleado() {
     }
-    
+
 }

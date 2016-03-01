@@ -14,5 +14,5 @@ public enum Categoria {
     AMARILLO,
     ROJO,
     SINASIGNAR;
-        
+
 }

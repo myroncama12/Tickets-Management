@@ -13,14 +13,16 @@ import view.interfaces.viewInterface;
  * @author Valakuth
  */
 public class Engine {
+
     private ArrayList<viewInterface> viewReferenceList;
     private Rep_Tickets repositorioTickets;
     private gDepartamento repositorioDepartamento;
-    
-    public Engine(){
-        repositorioTickets=new Rep_Tickets();
-        repositorioDepartamento=new gDepartamento();
-        viewReferenceList=new ArrayList<>();
-    };
-   
+
+    public Engine() {
+        repositorioTickets = new Rep_Tickets();
+        repositorioDepartamento = new gDepartamento();
+        viewReferenceList = new ArrayList<>();
+    }
+;
+
 }
