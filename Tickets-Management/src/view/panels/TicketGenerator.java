@@ -27,41 +27,56 @@ public class TicketGenerator extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        buttonGenerarTicket = new javax.swing.JButton();
+        labelBienvenida = new javax.swing.JLabel();
+        spinnerCantidadTickets = new javax.swing.JSpinner();
+        labelCantidadTickets = new javax.swing.JLabel();
 
-        jButton1.setText("Generar Tickets!");
+        buttonGenerarTicket.setText("Generar Tickets!");
 
-        jLabel1.setText("Bievenido al sistema de atendimiento");
+        labelBienvenida.setText("Bienvenido al sistema de atendimiento de tickets");
+
+        spinnerCantidadTickets.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        labelCantidadTickets.setText("Cantidad de tickets a generar:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(jButton1)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelCantidadTickets)
+                    .addComponent(buttonGenerarTicket))
+                .addGap(24, 24, 24)
+                .addComponent(spinnerCantidadTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(labelBienvenida)
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(115, 115, 115)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addComponent(labelBienvenida)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spinnerCantidadTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCantidadTickets))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonGenerarTicket)
+                .addContainerGap(93, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton buttonGenerarTicket;
+    private javax.swing.JLabel labelBienvenida;
+    private javax.swing.JLabel labelCantidadTickets;
+    private javax.swing.JSpinner spinnerCantidadTickets;
     // End of variables declaration//GEN-END:variables
 }
