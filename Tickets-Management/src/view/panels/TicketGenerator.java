@@ -14,8 +14,8 @@ import view.interfaces.viewInterface;
  *
  * @author pedro
  */
-public class TicketGenerator extends javax.swing.JPanel implements viewInterface{
-    
+public class TicketGenerator extends javax.swing.JFrame implements viewInterface{
+
     Controller controller;
     /**
      * Creates new form TicketGenerator
@@ -25,6 +25,13 @@ public class TicketGenerator extends javax.swing.JPanel implements viewInterface
         controller=pController;
         controller.setTicketGenerator(this);
         addEvents();
+    }
+    
+    /**
+     * Creates new form TicketGenerator1
+     */
+    public TicketGenerator() {
+        initComponents();
     }
 
     /**
@@ -36,50 +43,98 @@ public class TicketGenerator extends javax.swing.JPanel implements viewInterface
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGenerarTicket = new javax.swing.JButton();
         labelBienvenida = new javax.swing.JLabel();
-        spinnerCantidadTickets = new javax.swing.JSpinner();
         labelCantidadTickets = new javax.swing.JLabel();
+        spinnerCantidadTickets = new javax.swing.JSpinner();
+        buttonGenerarTicket = new javax.swing.JButton();
 
-        buttonGenerarTicket.setText("Generar Tickets!");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         labelBienvenida.setText("Bienvenido al sistema de atendimiento de tickets");
 
-        spinnerCantidadTickets.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-
         labelCantidadTickets.setText("Cantidad de tickets a generar:");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        spinnerCantidadTickets.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        buttonGenerarTicket.setText("Generar Tickets!");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelCantidadTickets)
-                    .addComponent(buttonGenerarTicket))
-                .addGap(24, 24, 24)
-                .addComponent(spinnerCantidadTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(labelBienvenida)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(labelCantidadTickets)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(spinnerCantidadTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelBienvenida)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(buttonGenerarTicket)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(115, 115, 115)
+                .addGap(122, 122, 122)
                 .addComponent(labelBienvenida)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(spinnerCantidadTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelCantidadTickets))
+                    .addComponent(labelCantidadTickets)
+                    .addComponent(spinnerCantidadTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonGenerarTicket)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * @param args the command line arguments
+     */
+    
+    /**
+     * 
+     * @param args 
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TicketGenerator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TicketGenerator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TicketGenerator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TicketGenerator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TicketGenerator().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonGenerarTicket;
@@ -90,7 +145,12 @@ public class TicketGenerator extends javax.swing.JPanel implements viewInterface
 
     @Override
     public void setVisibleTicketGenerator(boolean pVisibility) {
-        this.setVisibleTicketGenerator(pVisibility);
+        this.setVisible(pVisibility);
+    }
+    
+    @Override
+    public void setVisibleMainPanel(boolean pVisibility) {
+        
     }
 
     public JButton getButtonGenerarTicket() {
@@ -105,7 +165,4 @@ public class TicketGenerator extends javax.swing.JPanel implements viewInterface
         this.buttonGenerarTicket.addActionListener(controller);
         this.spinnerCantidadTickets.addChangeListener(controller);
     }
-    
-    
-    
 }
