@@ -15,6 +15,7 @@ import logic.Rep_Tickets;
 import logic.controller.Controller;
 import logic.gDepartamento;
 import view.panels.MainPanel;
+
 import view.panels.TicketGenerator;
 
 /**
@@ -33,7 +34,7 @@ public class TicketsManagement {
             System.out.println(d);
         }*/
         Ticket tick1 = new Ticket(LocalDate.now(), "Topo 1", Estado.ATENDIDO, Categoria.VERDE, "");
-        Ticket tick2 = new Ticket(LocalDate.now(), "Topo 2", Estado.ATENDIDO, Categoria.ROJO, "");
+        Ticket tick2 = new Ticket(LocalDate.now(), "Topo 2", Estado.ATENDIDO, Categoria.VERDE, "");
         Ticket tick3 = new Ticket(LocalDate.now(), "Topo 3", Estado.ATENDIDO, Categoria.VERDE, "");
         Rep_Tickets repo = new Rep_Tickets();
         repo.agregar(tick1);
@@ -59,7 +60,13 @@ public class TicketsManagement {
         
         System.out.println(repo.toString());
         System.out.println(dep.toString());
-        System.out.println(eng.employeesAttentionPercentage());
+        
+        eng.asignarCategoriaATicket(tick3, Categoria.ROJO);
+        eng.asignarEmpleadoATicket(tick1, emp2);
+        eng.finalizarAtencionTicket(tick2);
+        System.out.println(repo.toString());
+        
+        System.out.println(eng.porcentajeDeAtencionXEmpleados());
         
        /*
         System.out.println(repo.tipoTicketMasRecibido());
