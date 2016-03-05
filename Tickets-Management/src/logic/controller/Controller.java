@@ -11,6 +11,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import logic.Engine;
 import view.panels.MainPanel;
 import view.panels.TicketGenerator;
@@ -62,6 +63,8 @@ public class Controller implements ActionListener, ChangeListener, ListSelection
         
         if(e.getSource()==viewMainPanel.getBtnEstadisticas1()){
             System.out.println("Estadística 1");
+            DefaultTableModel model = (DefaultTableModel) this.viewMainPanel.getTableClasificar().getModel();
+            model.addRow(new Object[] {"Hola", "mis", "nalgas"});
         }
         
         if(e.getSource()==viewMainPanel.getBtnEstadisticas2()){
