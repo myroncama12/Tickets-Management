@@ -7,7 +7,6 @@ package view.panels;
 
 import javax.swing.JButton;
 import javax.swing.JSpinner;
-import javax.swing.event.ChangeListener;
 import logic.controller.Controller;
 import view.interfaces.viewInterface;
 

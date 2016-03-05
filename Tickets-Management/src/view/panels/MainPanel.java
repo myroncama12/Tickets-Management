@@ -5,17 +5,27 @@
  */
 package view.panels;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JList;
+import logic.controller.Controller;
+import view.interfaces.viewInterface;
+
 /**
  *
  * @author pedro
  */
 public class MainPanel extends javax.swing.JPanel {
-
+    
+    Controller controller;
     /**
      * Creates new form MainPanel
      */
-    public MainPanel() {
+    public MainPanel(Controller pController) {
         initComponents();
+        controller=pController;
+        controller.setMainPanel(this);
+        addEvents();
     }
 
     /**
@@ -27,9 +37,9 @@ public class MainPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollAdminTickets = new javax.swing.JScrollPane();
         listAdminTickets = new javax.swing.JList<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        scrollTicketsSinAtender = new javax.swing.JScrollPane();
         listTicketsSinAtender = new javax.swing.JList<>();
         cmbboxAtendientes = new javax.swing.JComboBox<>();
         cmbboxEstados = new javax.swing.JComboBox<>();
@@ -46,14 +56,14 @@ public class MainPanel extends javax.swing.JPanel {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(listAdminTickets);
+        scrollAdminTickets.setViewportView(listAdminTickets);
 
         listTicketsSinAtender.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(listTicketsSinAtender);
+        scrollTicketsSinAtender.setViewportView(listTicketsSinAtender);
 
         cmbboxAtendientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -84,7 +94,7 @@ public class MainPanel extends javax.swing.JPanel {
                         .addComponent(cmbboxEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scrollAdminTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnEstadisticas1)
@@ -93,7 +103,7 @@ public class MainPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scrollTicketsSinAtender, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cmbboxAtendientes, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -116,8 +126,8 @@ public class MainPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(scrollTicketsSinAtender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scrollAdminTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addComponent(btnEstadisticas1)
@@ -146,9 +156,71 @@ public class MainPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnFinalizar;
     private javax.swing.JComboBox<String> cmbboxAtendientes;
     private javax.swing.JComboBox<String> cmbboxEstados;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<String> listAdminTickets;
     private javax.swing.JList<String> listTicketsSinAtender;
+    private javax.swing.JScrollPane scrollAdminTickets;
+    private javax.swing.JScrollPane scrollTicketsSinAtender;
     // End of variables declaration//GEN-END:variables
+
+    public void setVisibleMainPanel(boolean pVisibility){
+        this.setVisibleMainPanel(pVisibility);
+    }
+    
+    public JButton getBtnAtender(){
+        return btnAtender;
+    }
+    
+    public JButton getBtnCambiarAtendiente(){
+        return btnCambiarAtendiente;
+    }
+    
+    public JButton getBtnEstadisticas1(){
+        return btnEstadisticas1;
+    }
+    
+    public JButton getBtnEstadisticas2(){
+        return btnEstadisticas2;
+    }
+    
+    public JButton getBtnEstadisticas3(){
+        return btnEstadisticas3;
+    }
+    
+    public JButton getBtnEstado(){
+        return btnEstado;
+    }
+    
+    public JButton getBtnFinalizar(){
+        return btnFinalizar;
+    }
+    
+    public JComboBox getCmbboxAtendientes(){
+        return cmbboxAtendientes;
+    }
+    
+    public JComboBox getCmbboxEstados(){
+        return cmbboxEstados;
+    }
+    
+    public JList<String> getListAdminTickets(){
+        return listAdminTickets;
+    }
+    
+    public JList<String> getListTicketsSinAtender(){
+        return listTicketsSinAtender;
+    }
+    
+    private void addEvents(){
+        this.btnAtender.addActionListener(controller);
+        this.btnCambiarAtendiente.addActionListener(controller);
+        this.btnEstadisticas1.addActionListener(controller);
+        this.btnEstadisticas2.addActionListener(controller);
+        this.btnEstadisticas3.addActionListener(controller);
+        this.btnEstado.addActionListener(controller);
+        this.btnFinalizar.addActionListener(controller);
+        this.cmbboxAtendientes.addActionListener(controller);
+        this.cmbboxEstados.addActionListener(controller);
+        this.listAdminTickets.addListSelectionListener(controller);
+        this.listTicketsSinAtender.addListSelectionListener(controller);
+    }
 }
