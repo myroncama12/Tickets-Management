@@ -21,7 +21,8 @@ public class Ticket {
     private String asunto;
     private Empleado empleado;
 
-    public Ticket(String cliente, Estado estado, Categoria categoria, String asunto) {
+    public Ticket(LocalDate fecha_Hora, String cliente, Estado estado, Categoria categoria, String asunto) {
+        this.fecha_Hora = fecha_Hora;
         this.cliente = cliente;
         this.estado = estado;
         this.categoria = categoria;

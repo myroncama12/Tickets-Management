@@ -107,7 +107,7 @@ public class Rep_Tickets extends GestorGeneral {
         Ticket newTicket;
         for (int i = 0; i < pAmount; i++) {
             this.loremIpsum = new LoremIpsum();
-            newTicket = new Ticket(loremIpsum.getWords(4, 2), SINATENDER, SINASIGNAR, loremIpsum.getWords(10, 2));
+            newTicket = new Ticket(LocalDate.now(), "Client " + i, SINATENDER, SINASIGNAR, "bla bla bla..");
             this.lista.add(newTicket);
         }
     }
