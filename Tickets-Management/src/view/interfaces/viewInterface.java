@@ -11,5 +11,5 @@ package view.interfaces;
  */
 public interface viewInterface {
 
-    public void setVisibleMainView(boolean pVisibility);
+    public void setVisibleTicketGenerator(boolean pVisibility);
 }

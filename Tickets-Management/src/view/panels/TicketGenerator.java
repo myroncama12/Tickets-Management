@@ -5,16 +5,18 @@
  */
 package view.panels;
 
+import view.interfaces.viewInterface;
+
 /**
  *
  * @author pedro
  */
-public class TicketGenerator extends javax.swing.JPanel {
+public class TicketGenerator extends javax.swing.JPanel implements viewInterface{
 
     /**
      * Creates new form TicketGenerator
      */
-    public TicketGenerator() {
+    public TicketGenerator(){
         initComponents();
     }
 
@@ -78,4 +80,9 @@ public class TicketGenerator extends javax.swing.JPanel {
     private javax.swing.JLabel labelCantidadTickets;
     private javax.swing.JSpinner spinnerCantidadTickets;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setVisibleTicketGenerator(boolean pVisibility) {
+        this.setVisibleTicketGenerator(pVisibility);
+    }
 }
