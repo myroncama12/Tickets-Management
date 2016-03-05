@@ -5,11 +5,11 @@
  */
 package logic;
 
-import de.svenjacobs.loremipsum.LoremIpsum;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import library.Categoria;
 import static library.Categoria.*;
+import library.Empleado;
 import library.Estado;
 import static library.Estado.*;
 import library.Ticket;
@@ -19,8 +19,6 @@ import library.Ticket;
  * @author Valakuth
  */
 public class Rep_Tickets extends GestorGeneral {
-    
-    private LoremIpsum loremIpsum;
 
     public Rep_Tickets() {
         this.lista = new ArrayList<>();
@@ -62,7 +60,7 @@ public class Rep_Tickets extends GestorGeneral {
         Ticket tick;
         for (Object t : lista) {
             tick = (Ticket) t;
-            if (tick.getCategoria() == C && tick.getFecha_Hora() == D) {
+            if (tick.getCategoria() == C && tick.getFecha_Hora().equals(D)) {
                 cantidad++;
             }
         }
@@ -70,7 +68,7 @@ public class Rep_Tickets extends GestorGeneral {
     }
 
     public Categoria tipoTicketMasRecibido() {
-        Categoria mayor = VERDE;
+        Categoria mayor = SINASIGNAR;
         int cantMayor = contarCategoria(mayor);
         for (Categoria c : Categoria.values()) {
             int cuentaActual = contarCategoria(c);
@@ -102,14 +100,41 @@ public class Rep_Tickets extends GestorGeneral {
         }
         return cantidad;
     }
-    
+
     public void generateTickets(int pAmount) {
         Ticket newTicket;
         for (int i = 0; i < pAmount; i++) {
-            this.loremIpsum = new LoremIpsum();
             newTicket = new Ticket(LocalDate.now(), "Client " + i, SINATENDER, SINASIGNAR, "bla bla bla..");
-            this.lista.add(newTicket);
+            this.agregar(newTicket);
         }
+    }
+
+    public int attendedAmountEmployeeCategorie(Empleado emp, Categoria c) {
+        int amount = 0;
+        for (Object t : this.lista) {
+            Ticket tick = (Ticket) t;
+            if (tick.getEstado().equals(ATENDIDO)) {
+                if (tick.getEmpleado().equals(emp) && tick.getCategoria().equals(c)) {
+                    amount++;
+                }
+            }
+        }
+        return amount;
+    }
+
+    public String employeeAttetionPercentage(Object obj, Categoria c) {
+        String report = "";
+        Empleado emp = (Empleado) obj;
+        report += "\nEmployee: " + emp.getNombre() + ", ";
+        float employeeAttetionAmount = attendedAmountEmployeeCategorie(emp, c);
+        int categorieAmount = contarCategoria(c);
+        if (categorieAmount > 0) {
+            float percentage = (employeeAttetionAmount / categorieAmount) * 100;
+            report += "Attetion Amount: " + (int) percentage + "%\n";
+        } else {
+            report += "Attetion Amount: 0%\n";
+        }
+        return report;
     }
 
     @Override

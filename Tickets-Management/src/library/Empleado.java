@@ -18,6 +18,11 @@ public class Empleado {
     private Categoria categoria;
     private Boolean esSupervisor;
 
+    public Empleado(String nombre, Categoria categoria) {
+        this.nombre = nombre;
+        this.categoria = categoria;
+    }    
+
     public String getNombre() {
         return nombre;
     }
@@ -83,7 +88,9 @@ public class Empleado {
         return true;
     }
 
-    public Empleado() {
-    }
-
+    @Override
+    public String toString() {
+        return "Empleado{" + "nombre=" + nombre + ", codigo=" + codigo + ", categoria=" + categoria + ", esSupervisor=" + esSupervisor + "}\ns";
+    } 
+    
 }

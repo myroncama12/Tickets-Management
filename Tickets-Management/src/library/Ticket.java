@@ -72,6 +72,14 @@ public class Ticket {
         return asunto;
     }
 
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }    
+
     @Override
     public int hashCode() {
         int hash = 3;

@@ -5,6 +5,11 @@
  */
 package logic;
 
+import java.util.ArrayList;
+import library.Categoria;
+import static library.Categoria.ROJO;
+import library.Empleado;
+
 /**
  *
  * @author Valakuth
@@ -12,6 +17,7 @@ package logic;
 public class gDepartamento extends GestorGeneral {
 
     public gDepartamento() {
+        this.lista = new ArrayList<>();
     }
 
     @Override
@@ -31,6 +37,13 @@ public class gDepartamento extends GestorGeneral {
             return true;
         }
         return false;
+    }    
+    
+    @Override
+    public String toString() {
+        String report = "Employees{";
+        report = this.lista.stream().map((t) -> ((Empleado) t).toString()).reduce(report, String::concat);
+        return report + '}';
     }
 
 }
