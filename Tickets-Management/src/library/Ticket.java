@@ -107,4 +107,8 @@ public class Ticket {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Ticket{" + "fecha_Hora=" + fecha_Hora + ", cliente=" + cliente + ", estado=" + estado + ", categoria=" + categoria + ", asunto=" + asunto + ", empleado=" + empleado + "}\n";
+    }
 }

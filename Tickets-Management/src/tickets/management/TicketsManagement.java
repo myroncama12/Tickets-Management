@@ -6,6 +6,7 @@
 package tickets.management;
 
 import library.Categoria;
+import logic.Rep_Tickets;
 
 /**
  *
@@ -18,10 +19,13 @@ public class TicketsManagement {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Categoria C;
+        /*Categoria C;
         for (Categoria d : Categoria.values()) {
             System.out.println(d);
-        }
+        }*/
+        Rep_Tickets repo = new Rep_Tickets();
+        repo.generateTickets(15);
+        System.out.println(repo.toString());
 
     }
 

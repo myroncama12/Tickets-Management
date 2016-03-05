@@ -72,7 +72,6 @@ public class TicketGenerator extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonGenerarTicket;
     private javax.swing.JLabel labelBienvenida;

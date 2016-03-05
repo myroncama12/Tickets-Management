@@ -5,13 +5,13 @@
  */
 package logic;
 
+import de.svenjacobs.loremipsum.LoremIpsum;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import library.Categoria;
 import static library.Categoria.*;
 import library.Estado;
-import static library.Estado.ATENDIDO;
+import static library.Estado.*;
 import library.Ticket;
 
 /**
@@ -19,8 +19,11 @@ import library.Ticket;
  * @author Valakuth
  */
 public class Rep_Tickets extends GestorGeneral {
+    
+    private LoremIpsum loremIpsum;
 
     public Rep_Tickets() {
+        this.lista = new ArrayList<>();
     }
 
     @Override
@@ -66,13 +69,8 @@ public class Rep_Tickets extends GestorGeneral {
         return cantidad;
     }
 
-    ;
-    
-    
     public Categoria tipoTicketMasRecibido() {
-
         Categoria mayor = VERDE;
-
         int cantMayor = contarCategoria(mayor);
         for (Categoria c : Categoria.values()) {
             int cuentaActual = contarCategoria(c);
@@ -86,7 +84,6 @@ public class Rep_Tickets extends GestorGeneral {
 
     public String distribucionTicketXCategoria(LocalDate D) {
         String reporte = "";
-
         for (Categoria c : Categoria.values()) {
             reporte += "Categoria: " + c + ", cantidad: " + contarCategoriaxFecha(c, D) + "\n";
         }
@@ -105,6 +102,20 @@ public class Rep_Tickets extends GestorGeneral {
         }
         return cantidad;
     }
-;
+    
+    public void generateTickets(int pAmount) {
+        Ticket newTicket;
+        for (int i = 0; i < pAmount; i++) {
+            this.loremIpsum = new LoremIpsum();
+            newTicket = new Ticket(loremIpsum.getWords(4, 2), SINATENDER, SINASIGNAR, loremIpsum.getWords(10, 2));
+            this.lista.add(newTicket);
+        }
+    }
 
+    @Override
+    public String toString() {
+        String report = "Rep_Tickets{";
+        report = this.lista.stream().map((t) -> ((Ticket) t).toString()).reduce(report, String::concat);
+        return report + '}';
+    }
 }

@@ -23,6 +23,9 @@ public class Engine {
         repositorioDepartamento = new gDepartamento();
         viewReferenceList = new ArrayList<>();
     }
-;
+
+    public void generateTickets(int pAmount) {
+        repositorioTickets.generateTickets(pAmount);
+    }
 
 }
