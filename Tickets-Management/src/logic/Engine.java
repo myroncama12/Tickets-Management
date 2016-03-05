@@ -27,5 +27,9 @@ public class Engine {
     public void generateTickets(int pAmount) {
         repositorioTickets.generateTickets(pAmount);
     }
+    
+    public void addNewView(viewInterface pViewInterface){
+        this.viewReferenceList.add(pViewInterface);
+    }
 
 }
