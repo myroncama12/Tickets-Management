@@ -101,7 +101,7 @@ public class Rep_Tickets extends GestorGeneral {
         return cantidad;
     }
 
-    public void generateTickets(int pAmount) {
+    public void generarTickets(int pAmount) {
         Ticket newTicket;
         for (int i = 0; i < pAmount; i++) {
             newTicket = new Ticket(LocalDate.now(), "Client " + i, SINATENDER, SINASIGNAR, "bla bla bla..");

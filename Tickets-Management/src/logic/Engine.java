@@ -83,8 +83,8 @@ public class Engine {
         return tickets;
     }      
 
-    public void generateTickets(int pAmount) {
-        repositorioTickets.generateTickets(pAmount);
+    public void generarTickets(int pAmount) {
+        repositorioTickets.generarTickets(pAmount);
     }
     
     public Categoria tipoTicketMasRecibido() {
@@ -99,7 +99,7 @@ public class Engine {
         this.viewReferenceList.add(pViewInterface);
     }
     
-    public int attendedAmountEmployeeCategorie(Empleado emp, Categoria c) {
+    public int cantidadDeAtencionCategoriaXEmpleado(Empleado emp, Categoria c) {
         int amount = 0;
         for (Object t : this.repositorioTickets.lista) {
             Ticket tick = (Ticket) t;
@@ -112,28 +112,28 @@ public class Engine {
         return amount;
     }
     
-    public String employeesAttentionPercentage () {
+    public String porcentajeDeAtencionXEmpleados () {
         String report = "";
         for (Categoria c : Categoria.values()) {
-            report += "\nCategorie: " + c;
+            report += "\nCategoría: " + c;
             float categorieAmount = repositorioTickets.contarCategoria(c);
-            report += "\nAttended Tickets: " + categorieAmount;
+            report += "\nTickets atendidos: " + categorieAmount;
             for (Object obj : repositorioDepartamento.lista) {
                 Empleado emp = (Empleado) obj;
-                report += "\nEmployee: " + emp.getNombre() + ", ";
-                float employeeAttetionAmount = attendedAmountEmployeeCategorie(emp, c);
+                report += "\nEmpleado: " + emp.getNombre() + ", ";
+                float employeeAttetionAmount = cantidadDeAtencionCategoriaXEmpleado(emp, c);
                 if (categorieAmount > 0) {
                     float percentage = (employeeAttetionAmount / categorieAmount) * 100;
-                    report += "Attention Percentage: " + (int) percentage + "%\n";
+                    report += "Porcentaje de atención: " + (int) percentage + "%\n";
                 } else {
-                    report += "Attention Percentage: 0%\n";
+                    report += "Porcentaje de atención: 0%\n";
                 }
             }
         }
         return report;
     }
     
-    public boolean asignTicketCategorie(Ticket tick, Categoria c) {        
+    public boolean asignarCategoriaATicket(Ticket tick, Categoria c) {        
         int where = this.repositorioTickets.lista.indexOf(tick);
         if (where != -1) {
             Ticket t = (Ticket) this.repositorioTickets.lista.get(where);
@@ -144,7 +144,7 @@ public class Engine {
         return false;
     }
     
-    public boolean asignTicketEmployee(Ticket tick, Empleado emp) {        
+    public boolean asignarEmpleadoATicket(Ticket tick, Empleado emp) {        
         int where = this.repositorioTickets.lista.indexOf(tick);
         if (where != -1) {
             Ticket t = (Ticket) this.repositorioTickets.lista.get(where);
@@ -156,7 +156,7 @@ public class Engine {
         return false;
     }    
     
-    public boolean completeTicketAttention(Ticket tick) {        
+    public boolean finalizarAtencionTicket(Ticket tick) {        
         int where = this.repositorioTickets.lista.indexOf(tick);
         if (where != -1) {
             Ticket t = (Ticket) this.repositorioTickets.lista.get(where);
