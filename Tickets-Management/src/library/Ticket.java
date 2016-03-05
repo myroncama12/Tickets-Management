@@ -107,12 +107,6 @@ public class Ticket {
         if (!Objects.equals(this.fecha_Hora, other.fecha_Hora)) {
             return false;
         }
-        if (this.estado != other.estado) {
-            return false;
-        }
-        if (this.categoria != other.categoria) {
-            return false;
-        }
         return true;
     }
 

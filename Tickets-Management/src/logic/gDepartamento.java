@@ -19,6 +19,10 @@ public class gDepartamento extends GestorGeneral {
     public gDepartamento() {
         this.lista = new ArrayList<>();
     }
+    
+    public ArrayList<Object> obtenerEmpleados() {
+        return this.lista;
+    }
 
     @Override
     public boolean agregar(Object o) {
@@ -37,7 +41,7 @@ public class gDepartamento extends GestorGeneral {
             return true;
         }
         return false;
-    }    
+    }
     
     @Override
     public String toString() {

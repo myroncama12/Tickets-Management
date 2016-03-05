@@ -109,34 +109,6 @@ public class Rep_Tickets extends GestorGeneral {
         }
     }
 
-    public int attendedAmountEmployeeCategorie(Empleado emp, Categoria c) {
-        int amount = 0;
-        for (Object t : this.lista) {
-            Ticket tick = (Ticket) t;
-            if (tick.getEstado().equals(ATENDIDO)) {
-                if (tick.getEmpleado().equals(emp) && tick.getCategoria().equals(c)) {
-                    amount++;
-                }
-            }
-        }
-        return amount;
-    }
-
-    public String employeeAttetionPercentage(Object obj, Categoria c) {
-        String report = "";
-        Empleado emp = (Empleado) obj;
-        report += "\nEmployee: " + emp.getNombre() + ", ";
-        float employeeAttetionAmount = attendedAmountEmployeeCategorie(emp, c);
-        int categorieAmount = contarCategoria(c);
-        if (categorieAmount > 0) {
-            float percentage = (employeeAttetionAmount / categorieAmount) * 100;
-            report += "Attetion Amount: " + (int) percentage + "%\n";
-        } else {
-            report += "Attetion Amount: 0%\n";
-        }
-        return report;
-    }
-
     @Override
     public String toString() {
         String report = "Rep_Tickets{";
