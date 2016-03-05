@@ -5,6 +5,9 @@
  */
 package view.panels;
 
+import javax.swing.JButton;
+import javax.swing.JSpinner;
+import logic.controller.Controller;
 import view.interfaces.viewInterface;
 
 /**
@@ -12,12 +15,16 @@ import view.interfaces.viewInterface;
  * @author pedro
  */
 public class TicketGenerator extends javax.swing.JPanel implements viewInterface{
-
+    
+    Controller controller;
     /**
      * Creates new form TicketGenerator
      */
-    public TicketGenerator(){
+    public TicketGenerator(Controller pController){
         initComponents();
+        controller=pController;
+        controller.setTicketGenerator(this);
+        addEvents();
     }
 
     /**
@@ -85,4 +92,20 @@ public class TicketGenerator extends javax.swing.JPanel implements viewInterface
     public void setVisibleTicketGenerator(boolean pVisibility) {
         this.setVisibleTicketGenerator(pVisibility);
     }
+
+    public JButton getButtonGenerarTicket() {
+        return buttonGenerarTicket;
+    }
+
+    public JSpinner getSpinnerCantidadTickets() {
+        return spinnerCantidadTickets;
+    }
+
+    private void addEvents() {
+        this.buttonGenerarTicket.addActionListener(controller);
+        this.spinnerCantidadTickets.addChangeListener(controller);
+    }
+    
+    
+    
 }

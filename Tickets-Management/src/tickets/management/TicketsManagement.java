@@ -6,7 +6,10 @@
 package tickets.management;
 
 import library.Categoria;
+import logic.Engine;
 import logic.Rep_Tickets;
+import logic.controller.Controller;
+import view.panels.TicketGenerator;
 
 /**
  *
@@ -26,6 +29,22 @@ public class TicketsManagement {
         Rep_Tickets repo = new Rep_Tickets();
         repo.generateTickets(15);
         System.out.println(repo.toString());
+        
+        Engine engine=new Engine();
+        
+        //-------------------------Controllers---------------------------------------------
+        Controller controller=new Controller(engine);
+        
+        //----------------------Ventanas--------------------------------------------
+        TicketGenerator viewTicketGenerator=new TicketGenerator(controller);
+        
+        
+        engine.addNewView(viewTicketGenerator);
+        
+        viewTicketGenerator.setVisible(true);
+        
+        
+        
 
     }
 
