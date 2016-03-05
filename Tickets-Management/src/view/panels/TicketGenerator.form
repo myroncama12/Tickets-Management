@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -16,49 +23,55 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="labelCantidadTickets" min="-2" max="-2" attributes="0"/>
-                  <Component id="buttonGenerarTicket" min="-2" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                              <Component id="labelCantidadTickets" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="spinnerCantidadTickets" min="-2" pref="85" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="labelBienvenida" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                      <Component id="buttonGenerarTicket" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-              <Component id="spinnerCantidadTickets" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-              <Component id="labelBienvenida" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="48" max="32767" attributes="0"/>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
               <Component id="labelBienvenida" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="spinnerCantidadTickets" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelCantidadTickets" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="spinnerCantidadTickets" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="buttonGenerarTicket" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="93" max="32767" attributes="0"/>
+              <EmptySpace pref="86" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="buttonGenerarTicket">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Generar Tickets!"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="labelBienvenida">
       <Properties>
         <Property name="text" type="java.lang.String" value="Bienvenido al sistema de atendimiento de tickets"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelCantidadTickets">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cantidad de tickets a generar:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="spinnerCantidadTickets">
@@ -68,9 +81,9 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelCantidadTickets">
+    <Component class="javax.swing.JButton" name="buttonGenerarTicket">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cantidad de tickets a generar:"/>
+        <Property name="text" type="java.lang.String" value="Generar Tickets!"/>
       </Properties>
     </Component>
   </SubComponents>

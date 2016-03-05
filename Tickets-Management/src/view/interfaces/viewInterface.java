@@ -12,4 +12,6 @@ package view.interfaces;
 public interface viewInterface {
 
     public void setVisibleTicketGenerator(boolean pVisibility);
+    public void setVisibleMainPanel(boolean pVisibility);
+    
 }

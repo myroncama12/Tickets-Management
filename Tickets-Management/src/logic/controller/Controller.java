@@ -38,10 +38,38 @@ public class Controller implements ActionListener, ChangeListener, ListSelection
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==viewTicketGenerator.getButtonGenerarTicket()){
-            model.generateTickets((int) this.viewTicketGenerator.getSpinnerCantidadTickets().getValue());
-           //TODO: Cambiar a MainPanel
-            
+            System.out.println("Se generarán " + this.viewTicketGenerator.getSpinnerCantidadTickets().getValue());
+            //model.generateTickets((int) this.viewTicketGenerator.getSpinnerCantidadTickets().getValue());
+            this.setVisibleMainPanel();
         
+        }
+        
+        if(e.getSource()==viewMainPanel.getBtnAtender()){
+            System.out.println("Atendiendo!");
+        }
+        
+        if(e.getSource()==viewMainPanel.getBtnFinalizar()){
+            System.out.println("Finalizado!");
+        }
+        
+        if(e.getSource()==viewMainPanel.getBtnCambiarAtendiente()){
+            System.out.println("Cambiando atendiente!");
+        }
+        
+        if(e.getSource()==viewMainPanel.getBtnEstado()){
+            System.out.println("Cambiando estado!");
+        }
+        
+        if(e.getSource()==viewMainPanel.getBtnEstadisticas1()){
+            System.out.println("Estadística 1");
+        }
+        
+        if(e.getSource()==viewMainPanel.getBtnEstadisticas2()){
+            System.out.println("Estadística 2");
+        }
+        
+        if(e.getSource()==viewMainPanel.getBtnEstadisticas3()){
+            System.out.println("Estadística 3");
         }
     }
 
@@ -53,14 +81,26 @@ public class Controller implements ActionListener, ChangeListener, ListSelection
         this.viewMainPanel=pPanel;
     }
 
+    private void setVisibleTicketGenerator(){
+        this.viewMainPanel.setVisible(false);
+        this.viewTicketGenerator.setVisible(true);
+    }
+    
+    private void setVisibleMainPanel(){
+        this.viewMainPanel.setVisible(true);
+        this.viewTicketGenerator.setVisible(false);
+    }
+    
+    
+    
     @Override
     public void stateChanged(ChangeEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("penerecto");
     }
     
 }

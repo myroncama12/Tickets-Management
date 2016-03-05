@@ -13,7 +13,11 @@ import library.Ticket;
 import logic.Engine;
 import logic.Rep_Tickets;
 import logic.controller.Controller;
+<<<<<<< HEAD
 import logic.gDepartamento;
+=======
+import view.panels.MainPanel;
+>>>>>>> 8c2b20501bcf3db9b741222ecc0c457d4ecdf857
 import view.panels.TicketGenerator;
 
 /**
@@ -73,9 +77,10 @@ public class TicketsManagement {
         
         //----------------------Ventanas--------------------------------------------
         TicketGenerator viewTicketGenerator=new TicketGenerator(controller);
-        
+        MainPanel viewMainPanel = new MainPanel(controller);
         
         engine.addNewView(viewTicketGenerator);
+        engine.addNewView(viewMainPanel);
         
         viewTicketGenerator.setVisible(true);
         
