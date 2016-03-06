@@ -68,7 +68,20 @@ public class Engine {
             }
         }        
         return tickets;
-    } 
+    }
+    
+    public ArrayList<Ticket> obtenerTiquetesSinAtender(Categoria categoria) {
+        ArrayList<Ticket> tickets = new ArrayList<>();        
+        for (Object obj : this.repositorioTickets.lista) {
+            Ticket tick = (Ticket) obj;
+            if (!tick.getCategoria().equals(categoria)) {
+                if (tick.getEstado().equals(SINATENDER)) {
+                    tickets.add(tick);
+                }
+            }
+        }        
+        return tickets;
+    }
     
     public ArrayList<Ticket> obtenerTiquetesEnAtencion() {
         ArrayList<Ticket> tickets = new ArrayList<>();        

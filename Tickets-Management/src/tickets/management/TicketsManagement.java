@@ -30,13 +30,14 @@ public class TicketsManagement {
     public static void main(String[] args) {
         // TODO code application logic here
         Empleado emp1 = new Empleado("Kevin Castro", Categoria.VERDE);
-        Empleado emp2 = new Empleado("Marco Ramirez", Categoria.VERDE);
-        Empleado emp3 = new Empleado("Myron Camacho", Categoria.VERDE);
-        Empleado emp4 = new Empleado("Juan C.", Categoria.AMARILLO);
-        Empleado emp5 = new Empleado("Jose Andrés El Topo", Categoria.AMARILLO);
+        Empleado emp2 = new Empleado("Juan C.", Categoria.AMARILLO);
+        Empleado emp3 = new Empleado("Jim La Sombra", Categoria.ROJO);
+        Empleado emp4 = new Empleado("Jose Andrés", Categoria.AMARILLO);
+        Empleado emp5 = new Empleado("Marco Ramirez", Categoria.VERDE);
         Empleado emp6 = new Empleado("Petardo Martínez", Categoria.AMARILLO);
-        Empleado emp7 = new Empleado("Jim La Sombra Oconitrillo", Categoria.ROJO);
+        Empleado emp7 = new Empleado("Myron Camacho", Categoria.VERDE);
         Empleado emp8 = new Empleado("Piter La Anguila", Categoria.ROJO);
+        Empleado emp9 = new Empleado("Myron Byron", Categoria.ROJO);
         
         gDepartamento dep = new gDepartamento();
         dep.agregar(emp1);
@@ -47,6 +48,7 @@ public class TicketsManagement {
         dep.agregar(emp6); 
         dep.agregar(emp7); 
         dep.agregar(emp8); 
+        dep.agregar(emp9); 
         Engine engine=new Engine();
         engine.setRepositorioDepartamento(dep);
         

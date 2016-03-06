@@ -59,16 +59,16 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
         btnEstadisticas3 = new javax.swing.JButton();
         btnAtender = new javax.swing.JButton();
         btnFinalizar = new javax.swing.JButton();
-        btnCambiarAtendiente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableAtender = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableClasificar = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableFinalizar = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        cmbboxEstadosAtender = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,8 +87,6 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
         btnAtender.setText("Atender");
 
         btnFinalizar.setText("Finalizar");
-
-        btnCambiarAtendiente.setText("Cambiar");
 
         tableAtender.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,7 +135,7 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
             tableClasificar.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableFinalizar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -153,12 +151,12 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane3.setViewportView(tableFinalizar);
+        if (tableFinalizar.getColumnModel().getColumnCount() > 0) {
+            tableFinalizar.getColumnModel().getColumn(0).setResizable(false);
+            tableFinalizar.getColumnModel().getColumn(1).setResizable(false);
+            tableFinalizar.getColumnModel().getColumn(2).setResizable(false);
+            tableFinalizar.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jLabel1.setText("Categorizar");
@@ -166,6 +164,8 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
         jLabel2.setText("Atender");
 
         jLabel3.setText("Finalizar atención");
+
+        cmbboxEstadosAtender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -192,18 +192,15 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
                         .addGap(34, 34, 34)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAtender, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbboxAtendientes, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(33, 33, 33)
-                                        .addComponent(btnCambiarAtendiente, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(190, 190, 190)
-                                        .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnAtender, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(190, 190, 190)
+                                .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(cmbboxAtendientes, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cmbboxEstadosAtender, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
                                 .addGap(43, 43, 43)
@@ -223,7 +220,7 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
                 .addGap(2, 2, 2)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbboxAtendientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCambiarAtendiente))
+                    .addComponent(cmbboxEstadosAtender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -300,7 +297,6 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtender;
-    private javax.swing.JButton btnCambiarAtendiente;
     private javax.swing.JButton btnEstadisticas1;
     private javax.swing.JButton btnEstadisticas2;
     private javax.swing.JButton btnEstadisticas3;
@@ -308,6 +304,7 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
     private javax.swing.JButton btnFinalizar;
     private javax.swing.JComboBox<String> cmbboxAtendientes;
     private javax.swing.JComboBox<String> cmbboxEstados;
+    private javax.swing.JComboBox<String> cmbboxEstadosAtender;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -315,9 +312,9 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable tableAtender;
     private javax.swing.JTable tableClasificar;
+    private javax.swing.JTable tableFinalizar;
     // End of variables declaration//GEN-END:variables
     
     
@@ -327,10 +324,6 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
     
     public JButton getBtnAtender(){
         return btnAtender;
-    }
-    
-    public JButton getBtnCambiarAtendiente(){
-        return btnCambiarAtendiente;
     }
     
     public JButton getBtnEstadisticas1(){
@@ -361,6 +354,10 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
         return cmbboxEstados;
     }
     
+    public JComboBox getCmbboxEstadosAtender(){
+        return cmbboxEstadosAtender;
+    }
+    
     public JTable getTableClasificar(){
         return tableClasificar;
     }
@@ -369,9 +366,12 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
         return tableAtender;
     }
     
+    public JTable getTableFinalizar(){
+        return tableFinalizar;
+    }
+    
     private void addEvents(){
         this.btnAtender.addActionListener(controller);
-        this.btnCambiarAtendiente.addActionListener(controller);
         this.btnEstadisticas1.addActionListener(controller);
         this.btnEstadisticas2.addActionListener(controller);
         this.btnEstadisticas3.addActionListener(controller);
@@ -379,6 +379,7 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
         this.btnFinalizar.addActionListener(controller);
         this.cmbboxAtendientes.addActionListener(controller);
         this.cmbboxEstados.addActionListener(controller);
+        this.cmbboxEstadosAtender.addActionListener(controller);
     }
 
     @Override
@@ -388,19 +389,22 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
     
     private void setCmbboxCategorias(){
         this.cmbboxEstados.removeAllItems();
+        this.cmbboxEstadosAtender.removeAllItems();
         for(Categoria categoria : Categoria.values()){
             this.cmbboxEstados.addItem(categoria.toString());
+            this.cmbboxEstadosAtender.addItem(categoria.toString());
         }
         this.cmbboxEstados.removeItemAt(3);
+        this.cmbboxEstadosAtender.removeItemAt(3);
     }
     
-    public void setCmbboxAtendientes(){
+    private void setCmbboxAtendientes(){
         this.cmbboxAtendientes.removeAllItems();
         ArrayList<Object> empleados = controller.getModel().getRepositorioDepartamento().getLista();
         Empleado aAgregar;
         for(Object atendiente : empleados){
             aAgregar = (Empleado) atendiente;
-            this.cmbboxAtendientes.addItem(aAgregar.getNombre() + " " + aAgregar.getCategoria());
+            this.cmbboxAtendientes.addItem(aAgregar.getNombre());
         }
     }
     

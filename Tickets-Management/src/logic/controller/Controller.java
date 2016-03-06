@@ -62,9 +62,6 @@ public class Controller implements ActionListener, ChangeListener, ListSelection
             System.out.println("Finalizado!");
         }
         
-        if(e.getSource()==viewMainPanel.getBtnCambiarAtendiente()){
-            System.out.println("Cambiando atendiente!");
-        }
         
         if(e.getSource()==viewMainPanel.getBtnEstado()){
             System.out.println("Cambiando estado!");
@@ -84,6 +81,10 @@ public class Controller implements ActionListener, ChangeListener, ListSelection
         if(e.getSource()==viewMainPanel.getBtnEstadisticas3()){
             System.out.println("Estadística 3");
             JOptionPane.showMessageDialog(this.viewMainPanel, model.tipoTicketMasRecibido());
+        }
+        
+        if(e.getSource()==viewMainPanel.getCmbboxEstadosAtender()){
+            System.out.println("Cambió estado!");
         }
     }
 
@@ -131,7 +132,7 @@ public class Controller implements ActionListener, ChangeListener, ListSelection
         Ticket aAgregar;
         for (Object elemento : model.obtenerTiquetesSinAtender() ){
             aAgregar = (Ticket) elemento;
-            listaAtender.addRow(new Object[]{aAgregar.getFecha_Hora().toString(), aAgregar.getCliente().toString(), aAgregar.getCategoria().toString(), aAgregar.getEstado().toString(), aAgregar.getAsunto().toString()});
+            listaAtender.addRow(new Object[]{aAgregar.getFecha_Hora().toString(), aAgregar.getCliente().toString(), aAgregar.getCategoria().toString(), aAgregar.getAsunto().toString()});
         }
     }
     
@@ -146,6 +147,16 @@ public class Controller implements ActionListener, ChangeListener, ListSelection
     
     private int getTableSelection(JTable tableToCheck){
         return tableToCheck.getSelectedRow();
+    }
+    
+    private void showSpecificCategoryTickets(Categoria category){
+        /*DefaultTableModel listaAtender = (DefaultTableModel) this.viewMainPanel.getTableAtender().getModel();
+        Ticket aAgregar;
+        int indexEmpleado = this.viewMainPanel.getCmbboxAtendientes().getSelectedIndex();
+        for (Object elemento : model.obtenerTiquetesSinAtender() ){
+            aAgregar = (Ticket) elemento;
+            listaAtender.addRow(new Object[]{aAgregar.getFecha_Hora().toString(), aAgregar.getCliente().toString(), aAgregar.getCategoria().toString(), aAgregar.getAsunto().toString()});
+        }*/
     }
     
     private void classifyTicket(){
