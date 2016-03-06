@@ -337,4 +337,6 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
         }
         this.cmbboxEstados.removeItemAt(3);
     }
+    
+    
 }

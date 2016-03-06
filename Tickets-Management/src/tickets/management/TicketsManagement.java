@@ -61,7 +61,7 @@ public class TicketsManagement {
         System.out.println(repo.toString());
         System.out.println(dep.toString());
         
-        eng.asignarCategoriaATicket(tick3, Categoria.ROJO);
+        eng.asignarCategoriaATicket(tick3);
         eng.asignarEmpleadoATicket(tick1, emp2);
         eng.finalizarAtencionTicket(tick2);
         System.out.println(repo.toString());

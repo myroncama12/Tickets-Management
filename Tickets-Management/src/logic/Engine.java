@@ -133,12 +133,10 @@ public class Engine {
         return report;
     }
     
-    public boolean asignarCategoriaATicket(Ticket tick, Categoria c) {        
+    public boolean asignarCategoriaATicket(Ticket tick) {        
         int where = this.repositorioTickets.lista.indexOf(tick);
         if (where != -1) {
-            Ticket t = (Ticket) this.repositorioTickets.lista.get(where);
-            t.setCategoria(c);
-            this.repositorioTickets.lista.set(where, t);
+            this.repositorioTickets.lista.set(where, tick);
             return true;
         }
         return false;

@@ -7,11 +7,18 @@ package logic.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import library.Categoria;
+import library.Estado;
+import library.Ticket;
 import logic.Engine;
 import view.panels.MainPanel;
 import view.panels.TicketGenerator;
@@ -39,10 +46,12 @@ public class Controller implements ActionListener, ChangeListener, ListSelection
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==viewTicketGenerator.getButtonGenerarTicket()){
-            System.out.println("Se generarán " + this.viewTicketGenerator.getSpinnerCantidadTickets().getValue());
-            //model.generateTickets((int) this.viewTicketGenerator.getSpinnerCantidadTickets().getValue());
+            int cantidadTickets = (int) this.viewTicketGenerator.getSpinnerCantidadTickets().getValue();
+            model.generarTickets(cantidadTickets);
+            System.out.println("Se generarán " + this.viewTicketGenerator.getSpinnerCantidadTickets().getValue() + " tiquetes");
+            addToTableNonCategorized();
             this.setVisibleMainPanel();
-        
+            
         }
         
         if(e.getSource()==viewMainPanel.getBtnAtender()){
@@ -59,12 +68,11 @@ public class Controller implements ActionListener, ChangeListener, ListSelection
         
         if(e.getSource()==viewMainPanel.getBtnEstado()){
             System.out.println("Cambiando estado!");
+            classifyTicket();
         }
         
         if(e.getSource()==viewMainPanel.getBtnEstadisticas1()){
             System.out.println("Estadística 1");
-            DefaultTableModel model = (DefaultTableModel) this.viewMainPanel.getTableClasificar().getModel();
-            model.addRow(new Object[] {"Hola", "mis", "nalgas"});
         }
         
         if(e.getSource()==viewMainPanel.getBtnEstadisticas2()){
@@ -103,7 +111,61 @@ public class Controller implements ActionListener, ChangeListener, ListSelection
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        System.out.println("penerecto");
+        
     }
+    
+    private void addToTableNonCategorized(){
+        DefaultTableModel listaClasificar = (DefaultTableModel) this.viewMainPanel.getTableClasificar().getModel();
+        Ticket aAgregar;
+        for (Object elemento : model.obtenerTiquetesSinCategoria() ){
+            aAgregar = (Ticket) elemento;
+            listaClasificar.addRow(new Object[]{aAgregar.getFecha_Hora().toString(), aAgregar.getCliente().toString(), aAgregar.getAsunto().toString()});
+        }
+    }
+    
+    private void addToTableCategorized(){
+        DefaultTableModel listaAtender = (DefaultTableModel) this.viewMainPanel.getTableAtender().getModel();
+        Ticket aAgregar;
+        for (Object elemento : model.obtenerTiquetesSinAtender() ){
+            aAgregar = (Ticket) elemento;
+            listaAtender.addRow(new Object[]{aAgregar.getFecha_Hora().toString(), aAgregar.getCliente().toString(), aAgregar.getCategoria().toString(), aAgregar.getEstado().toString(), aAgregar.getAsunto().toString()});
+        }
+    }
+    
+    private void clearTable(JTable tableToClear){
+        DefaultTableModel lista = (DefaultTableModel) tableToClear.getModel();
+        int rowCount = lista.getRowCount();
+        //Remove rows one by one from the end of the table
+        for (int i = rowCount - 1; i >= 0; i--) {
+            lista.removeRow(i);
+        }
+    }
+    
+    private int getTableSelection(JTable tableToCheck){
+        return tableToCheck.getSelectedRow();
+    }
+    
+    private void classifyTicket(){
+        int position = getTableSelection(this.viewMainPanel.getTableClasificar());
+        if (position == -1){
+            JOptionPane.showMessageDialog(this.viewMainPanel, "Elemento no seleccionado","Acción no válida",JOptionPane.ERROR_MESSAGE);
+        } else {
+            int row = this.viewMainPanel.getTableClasificar().getSelectedRow();
+            
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate fecha = LocalDate.parse((CharSequence) this.viewMainPanel.getTableClasificar().getValueAt(row, 0), formatter);
+            String cliente = (String) this.viewMainPanel.getTableClasificar().getValueAt(row, 1);
+            String descripcion = (String) this.viewMainPanel.getTableClasificar().getValueAt(row, 2);
+            Categoria categoria = Categoria.valueOf(this.viewMainPanel.getCmbboxEstados().getSelectedItem().toString());
+            Ticket tick = new Ticket(fecha, cliente, Estado.SINATENDER,  categoria, descripcion);
+            model.asignarCategoriaATicket(tick);
+            
+            clearTable(this.viewMainPanel.getTableClasificar());
+            clearTable(this.viewMainPanel.getTableAtender());
+            addToTableNonCategorized();
+            addToTableCategorized();
+        }
+    }
+    
     
 }
