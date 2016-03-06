@@ -115,6 +115,9 @@ public class Engine {
     public String porcentajeDeAtencionXEmpleados () {
         String report = "";
         for (Categoria c : Categoria.values()) {
+            if (c.equals(Categoria.SINASIGNAR)){
+                break;
+            }
             report += "\nCategoría: " + c;
             float categorieAmount = repositorioTickets.contarCategoria(c);
             report += "\nTickets atendidos: " + categorieAmount;
@@ -124,9 +127,9 @@ public class Engine {
                 float employeeAttetionAmount = cantidadDeAtencionCategoriaXEmpleado(emp, c);
                 if (categorieAmount > 0) {
                     float percentage = (employeeAttetionAmount / categorieAmount) * 100;
-                    report += "Porcentaje de atención: " + (int) percentage + "%\n";
+                    report += "Porcentaje de atención: " + (int) percentage + "%";
                 } else {
-                    report += "Porcentaje de atención: 0%\n";
+                    report += "Porcentaje de atención: 0%";
                 }
             }
         }

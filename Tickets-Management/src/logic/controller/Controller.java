@@ -73,14 +73,17 @@ public class Controller implements ActionListener, ChangeListener, ListSelection
         
         if(e.getSource()==viewMainPanel.getBtnEstadisticas1()){
             System.out.println("Estadística 1");
+            JOptionPane.showMessageDialog(this.viewMainPanel, model.distribucionTicketXCategoria(LocalDate.now()));
         }
         
         if(e.getSource()==viewMainPanel.getBtnEstadisticas2()){
             System.out.println("Estadística 2");
+            JOptionPane.showMessageDialog(this.viewMainPanel, model.porcentajeDeAtencionXEmpleados());
         }
         
         if(e.getSource()==viewMainPanel.getBtnEstadisticas3()){
             System.out.println("Estadística 3");
+            JOptionPane.showMessageDialog(this.viewMainPanel, model.tipoTicketMasRecibido());
         }
     }
 
