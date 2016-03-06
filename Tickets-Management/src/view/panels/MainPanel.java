@@ -33,8 +33,8 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
         controller=pController;
         controller.setMainPanel(this);
         addEvents();
-        setCmbboxCategorias();
         setCmbboxAtendientes();
+        setCmbboxCategorias();
     }
     
     public MainPanel(){
@@ -68,7 +68,6 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        cmbboxEstadosAtender = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,11 +139,11 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
 
             },
             new String [] {
-                "Fecha", "Cliente", "Categoría", "Descripción"
+                "Fecha", "Cliente", "Categoría", "Empleado", "Descripción"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -157,6 +156,7 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
             tableFinalizar.getColumnModel().getColumn(1).setResizable(false);
             tableFinalizar.getColumnModel().getColumn(2).setResizable(false);
             tableFinalizar.getColumnModel().getColumn(3).setResizable(false);
+            tableFinalizar.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jLabel1.setText("Categorizar");
@@ -164,8 +164,6 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
         jLabel2.setText("Atender");
 
         jLabel3.setText("Finalizar atención");
-
-        cmbboxEstadosAtender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -191,22 +189,17 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGap(34, 34, 34)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnAtender, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(190, 190, 190)
-                                .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(cmbboxAtendientes, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cmbboxEstadosAtender, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
-                                .addGap(43, 43, 43)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(cmbboxAtendientes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
+                            .addComponent(btnAtender, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -218,9 +211,7 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addGap(2, 2, 2)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbboxAtendientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbboxEstadosAtender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(cmbboxAtendientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -304,7 +295,6 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
     private javax.swing.JButton btnFinalizar;
     private javax.swing.JComboBox<String> cmbboxAtendientes;
     private javax.swing.JComboBox<String> cmbboxEstados;
-    private javax.swing.JComboBox<String> cmbboxEstadosAtender;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -320,6 +310,7 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
     
     public void setVisibleMainPanel(boolean pVisibility){
         this.setVisible(pVisibility);
+        
     }
     
     public JButton getBtnAtender(){
@@ -354,10 +345,6 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
         return cmbboxEstados;
     }
     
-    public JComboBox getCmbboxEstadosAtender(){
-        return cmbboxEstadosAtender;
-    }
-    
     public JTable getTableClasificar(){
         return tableClasificar;
     }
@@ -379,7 +366,6 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
         this.btnFinalizar.addActionListener(controller);
         this.cmbboxAtendientes.addActionListener(controller);
         this.cmbboxEstados.addActionListener(controller);
-        this.cmbboxEstadosAtender.addActionListener(controller);
     }
 
     @Override
@@ -387,15 +373,12 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
         
     }
     
-    private void setCmbboxCategorias(){
+    public void setCmbboxCategorias(){
         this.cmbboxEstados.removeAllItems();
-        this.cmbboxEstadosAtender.removeAllItems();
         for(Categoria categoria : Categoria.values()){
             this.cmbboxEstados.addItem(categoria.toString());
-            this.cmbboxEstadosAtender.addItem(categoria.toString());
         }
         this.cmbboxEstados.removeItemAt(3);
-        this.cmbboxEstadosAtender.removeItemAt(3);
     }
     
     private void setCmbboxAtendientes(){
@@ -404,7 +387,7 @@ public class MainPanel extends javax.swing.JFrame implements viewInterface {
         Empleado aAgregar;
         for(Object atendiente : empleados){
             aAgregar = (Empleado) atendiente;
-            this.cmbboxAtendientes.addItem(aAgregar.getNombre());
+            this.cmbboxAtendientes.addItem(aAgregar.getNombre() + " (" +aAgregar.getCategoria().toString()+")");
         }
     }
     

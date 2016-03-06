@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
@@ -17,6 +18,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import library.Categoria;
+import library.Empleado;
 import library.Estado;
 import library.Ticket;
 import logic.Engine;
@@ -55,37 +57,32 @@ public class Controller implements ActionListener, ChangeListener, ListSelection
         }
         
         if(e.getSource()==viewMainPanel.getBtnAtender()){
-            System.out.println("Atendiendo!");
+            int indexEmpleado = this.viewMainPanel.getCmbboxAtendientes().getSelectedIndex();
+            Empleado atender = (Empleado) model.getRepositorioDepartamento().getLista().get(indexEmpleado);
+            attendTicket(atender);
         }
         
         if(e.getSource()==viewMainPanel.getBtnFinalizar()){
-            System.out.println("Finalizado!");
+            completeTicket();
         }
         
         
         if(e.getSource()==viewMainPanel.getBtnEstado()){
-            System.out.println("Cambiando estado!");
             classifyTicket();
         }
         
         if(e.getSource()==viewMainPanel.getBtnEstadisticas1()){
-            System.out.println("Estadística 1");
             JOptionPane.showMessageDialog(this.viewMainPanel, model.distribucionTicketXCategoria(LocalDate.now()));
         }
         
         if(e.getSource()==viewMainPanel.getBtnEstadisticas2()){
-            System.out.println("Estadística 2");
             JOptionPane.showMessageDialog(this.viewMainPanel, model.porcentajeDeAtencionXEmpleados());
         }
         
         if(e.getSource()==viewMainPanel.getBtnEstadisticas3()){
-            System.out.println("Estadística 3");
             JOptionPane.showMessageDialog(this.viewMainPanel, model.tipoTicketMasRecibido());
         }
         
-        if(e.getSource()==viewMainPanel.getCmbboxEstadosAtender()){
-            System.out.println("Cambió estado!");
-        }
     }
 
     public void setTicketGenerator(TicketGenerator pTicket) {
@@ -136,10 +133,27 @@ public class Controller implements ActionListener, ChangeListener, ListSelection
         }
     }
     
+    private void addToTableCategorized(Categoria category){
+        DefaultTableModel listaAtender = (DefaultTableModel) this.viewMainPanel.getTableAtender().getModel();
+        Ticket aAgregar;
+        for (Object elemento : model.obtenerTiquetesSinAtender(category) ){
+            aAgregar = (Ticket) elemento;
+            listaAtender.addRow(new Object[]{aAgregar.getFecha_Hora().toString(), aAgregar.getCliente().toString(), aAgregar.getCategoria().toString(), aAgregar.getAsunto().toString()});
+        }
+    }
+    
+    private void addToTableEnd(){
+        DefaultTableModel listaFinalizar = (DefaultTableModel) this.viewMainPanel.getTableFinalizar().getModel();
+        Ticket aAgregar;
+        for (Object elemento : model.obtenerTiquetesEnAtencion() ){
+            aAgregar = (Ticket) elemento;
+            listaFinalizar.addRow(new Object[]{aAgregar.getFecha_Hora().toString(), aAgregar.getCliente().toString(), aAgregar.getCategoria().toString(),aAgregar.getEmpleado().getNombre().toString(), aAgregar.getAsunto().toString()});
+        }
+    }
+    
     private void clearTable(JTable tableToClear){
         DefaultTableModel lista = (DefaultTableModel) tableToClear.getModel();
         int rowCount = lista.getRowCount();
-        //Remove rows one by one from the end of the table
         for (int i = rowCount - 1; i >= 0; i--) {
             lista.removeRow(i);
         }
@@ -147,16 +161,6 @@ public class Controller implements ActionListener, ChangeListener, ListSelection
     
     private int getTableSelection(JTable tableToCheck){
         return tableToCheck.getSelectedRow();
-    }
-    
-    private void showSpecificCategoryTickets(Categoria category){
-        /*DefaultTableModel listaAtender = (DefaultTableModel) this.viewMainPanel.getTableAtender().getModel();
-        Ticket aAgregar;
-        int indexEmpleado = this.viewMainPanel.getCmbboxAtendientes().getSelectedIndex();
-        for (Object elemento : model.obtenerTiquetesSinAtender() ){
-            aAgregar = (Ticket) elemento;
-            listaAtender.addRow(new Object[]{aAgregar.getFecha_Hora().toString(), aAgregar.getCliente().toString(), aAgregar.getCategoria().toString(), aAgregar.getAsunto().toString()});
-        }*/
     }
     
     private void classifyTicket(){
@@ -178,6 +182,54 @@ public class Controller implements ActionListener, ChangeListener, ListSelection
             clearTable(this.viewMainPanel.getTableAtender());
             addToTableNonCategorized();
             addToTableCategorized();
+        }
+    }
+    
+    private void attendTicket(Empleado atendiente){
+        int position = getTableSelection(this.viewMainPanel.getTableAtender());
+        if (position == -1){
+            JOptionPane.showMessageDialog(this.viewMainPanel, "Elemento no seleccionado","Acción no válida",JOptionPane.ERROR_MESSAGE);
+        }
+        int row = this.viewMainPanel.getTableAtender().getSelectedRow();
+        Categoria categoriaTicket = Categoria.valueOf(this.viewMainPanel.getTableAtender().getValueAt(row, 2).toString());
+        if (!atendiente.getCategoria().equals(categoriaTicket)){
+            JOptionPane.showMessageDialog(this.viewMainPanel, "Atendiente seleccionado no puede atender esto","Acción no válida",JOptionPane.ERROR_MESSAGE);
+        } else {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate fecha = LocalDate.parse((CharSequence) this.viewMainPanel.getTableAtender().getValueAt(row, 0), formatter);
+            String cliente = (String) this.viewMainPanel.getTableAtender().getValueAt(row, 1);
+            String descripcion = (String) this.viewMainPanel.getTableAtender().getValueAt(row, 3);
+            Ticket tick = new Ticket(fecha, cliente, Estado.ENATENCION,  categoriaTicket, descripcion);
+            tick.setEmpleado(atendiente);
+            model.asignarEmpleadoATicket(tick, atendiente);
+            
+            clearTable(this.viewMainPanel.getTableFinalizar());
+            clearTable(this.viewMainPanel.getTableAtender());
+            addToTableEnd();
+            addToTableCategorized();
+            System.out.println("Exitoso");
+        }
+    }
+    
+    private void completeTicket(){
+        int position = getTableSelection(this.viewMainPanel.getTableFinalizar());
+        if (position == -1){
+            JOptionPane.showMessageDialog(this.viewMainPanel, "Elemento no seleccionado","Acción no válida",JOptionPane.ERROR_MESSAGE);
+        } else {
+            int row = this.viewMainPanel.getTableFinalizar().getSelectedRow();
+            
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate fecha = LocalDate.parse((CharSequence) this.viewMainPanel.getTableFinalizar().getValueAt(row, 0), formatter);
+            String cliente = (String) this.viewMainPanel.getTableFinalizar().getValueAt(row, 1);
+            Categoria categoriaTicket = Categoria.valueOf(this.viewMainPanel.getTableFinalizar().getValueAt(row, 2).toString());
+            String descripcion = (String) this.viewMainPanel.getTableFinalizar().getValueAt(row, 4);
+            System.out.println("Aqui todo está bien");
+            Ticket tick = new Ticket(fecha, cliente, Estado.ATENDIDO, categoriaTicket, descripcion);
+            model.finalizarAtencionTicket(tick);
+            
+            clearTable(this.viewMainPanel.getTableFinalizar());
+            addToTableEnd();
+            System.out.println("Exitoso");
         }
     }
     
