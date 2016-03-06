@@ -115,6 +115,9 @@ public class Engine {
     public String porcentajeDeAtencionXEmpleados () {
         String report = "";
         for (Categoria c : Categoria.values()) {
+            if (c.equals(Categoria.SINASIGNAR)){
+                break;
+            }
             report += "\nCategoría: " + c;
             float categorieAmount = repositorioTickets.contarCategoria(c);
             report += "\nTickets atendidos: " + categorieAmount;
@@ -124,21 +127,19 @@ public class Engine {
                 float employeeAttetionAmount = cantidadDeAtencionCategoriaXEmpleado(emp, c);
                 if (categorieAmount > 0) {
                     float percentage = (employeeAttetionAmount / categorieAmount) * 100;
-                    report += "Porcentaje de atención: " + (int) percentage + "%\n";
+                    report += "Porcentaje de atención: " + (int) percentage + "%";
                 } else {
-                    report += "Porcentaje de atención: 0%\n";
+                    report += "Porcentaje de atención: 0%";
                 }
             }
         }
         return report;
     }
     
-    public boolean asignarCategoriaATicket(Ticket tick, Categoria c) {        
+    public boolean asignarCategoriaATicket(Ticket tick) {        
         int where = this.repositorioTickets.lista.indexOf(tick);
         if (where != -1) {
-            Ticket t = (Ticket) this.repositorioTickets.lista.get(where);
-            t.setCategoria(c);
-            this.repositorioTickets.lista.set(where, t);
+            this.repositorioTickets.lista.set(where, tick);
             return true;
         }
         return false;

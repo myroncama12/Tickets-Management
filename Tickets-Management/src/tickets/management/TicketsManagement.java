@@ -13,11 +13,9 @@ import library.Ticket;
 import logic.Engine;
 import logic.Rep_Tickets;
 import logic.controller.Controller;
-//<<<<<<< HEAD
 import logic.gDepartamento;
-//=======
 import view.panels.MainPanel;
-//>>>>>>> 8c2b20501bcf3db9b741222ecc0c457d4ecdf857
+
 import view.panels.TicketGenerator;
 
 /**
@@ -31,52 +29,26 @@ public class TicketsManagement {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        /*Categoria C;
-        for (Categoria d : Categoria.values()) {
-            System.out.println(d);
-        }*/
-        Ticket tick1 = new Ticket(LocalDate.now(), "Topo 1", Estado.ATENDIDO, Categoria.VERDE, "");
-        Ticket tick2 = new Ticket(LocalDate.now(), "Topo 2", Estado.ATENDIDO, Categoria.VERDE, "");
-        Ticket tick3 = new Ticket(LocalDate.now(), "Topo 3", Estado.ATENDIDO, Categoria.VERDE, "");
-        Rep_Tickets repo = new Rep_Tickets();
-        repo.agregar(tick1);
-        repo.agregar(tick2);
-        repo.agregar(tick3);
-        
         Empleado emp1 = new Empleado("Kevin Castro", Categoria.VERDE);
         Empleado emp2 = new Empleado("Marco Ramirez", Categoria.VERDE);
         Empleado emp3 = new Empleado("Myron Camacho", Categoria.VERDE);
+        Empleado emp4 = new Empleado("Juan C.", Categoria.AMARILLO);
+        Empleado emp5 = new Empleado("Jose Andrés El Topo", Categoria.AMARILLO);
+        Empleado emp6 = new Empleado("Petardo Martínez", Categoria.AMARILLO);
+        Empleado emp7 = new Empleado("Jim La Sombra Oconitrillo", Categoria.ROJO);
+        Empleado emp8 = new Empleado("Piter La Anguila", Categoria.ROJO);
         
         gDepartamento dep = new gDepartamento();
         dep.agregar(emp1);
         dep.agregar(emp2);
         dep.agregar(emp3);
-        
-        tick1.setEmpleado(emp1);
-        tick2.setEmpleado(emp2);
-        tick3.setEmpleado(emp3);
-        
-        Engine eng = new Engine();
-        eng.setRepositorioDepartamento(dep);
-        eng.setRepositorioTickets(repo);
-        
-        System.out.println(repo.toString());
-        System.out.println(dep.toString());
-        
-        eng.asignTicketCategorie(tick3, Categoria.ROJO);
-        eng.asignTicketEmployee(tick1, emp2);
-        eng.completeTicketAttention(tick2);
-        System.out.println(repo.toString());
-        
-        System.out.println(eng.employeesAttentionPercentage());
-        
-       /*
-        System.out.println(repo.tipoTicketMasRecibido());
-        System.out.println(repo.distribucionTicketXCategoria(LocalDate.now()));
-        System.out.println(repo.contadorTicketsAtendidos());
-       */
-        
+        dep.agregar(emp4); 
+        dep.agregar(emp5); 
+        dep.agregar(emp6); 
+        dep.agregar(emp7); 
+        dep.agregar(emp8); 
         Engine engine=new Engine();
+        engine.setRepositorioDepartamento(dep);
         
         //-------------------------Controllers---------------------------------------------
         Controller controller=new Controller(engine);
