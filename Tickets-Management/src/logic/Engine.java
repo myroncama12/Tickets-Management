@@ -95,6 +95,17 @@ public class Engine {
         }        
         return tickets;
     }      
+    
+    public ArrayList<Empleado> obtenerEmpleadosXCategoria(Categoria categoria) {
+        ArrayList<Empleado> empleados = new ArrayList<>();        
+        for (Object obj : this.repositorioDepartamento.lista) {
+            Empleado emp = (Empleado) obj;
+            if (emp.getCategoria().equals(categoria)) {
+                empleados.add(emp);
+            }
+        }        
+        return empleados;
+    }          
 
     public void generarTickets(int pAmount) {
         repositorioTickets.generarTickets(pAmount);
